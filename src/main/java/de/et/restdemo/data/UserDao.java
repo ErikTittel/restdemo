@@ -31,4 +31,8 @@ public enum UserDao {
     public Set<String> getAllUserIds() {
         return usersById.keySet();
     }
+
+    public void deleteUserById(String id) {
+        usersById.remove(id);
+    }
 }

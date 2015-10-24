@@ -38,4 +38,10 @@ public class UserResource {
         return dao.findUserById(id);
     }
 
+    @DELETE
+    @Path("/{id}")
+    public Response deleteUser(@PathParam("id") String id) {
+        dao.deleteUserById(id);
+        return Response.noContent().build();
+    }
 }
