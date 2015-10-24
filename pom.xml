@@ -5,14 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.et</groupId>
-    <artifactId>restodemo</artifactId>
+    <artifactId>restdemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.version>1.8</maven.compiler.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <!-- RESTEasy -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>2.2.1.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- MongoDB -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver</artifactId>
@@ -24,6 +35,7 @@
             <version>1.0.1</version>
         </dependency>
 
+        <!-- Testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -39,6 +51,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
