@@ -1,13 +1,11 @@
 package de.et.restdemo.rest;
 
+import de.et.restdemo.data.UserDao;
 import de.et.restdemo.model.User;
-import de.et.restdemo.model.UserId;
-import de.et.restdemo.utils.KeyGen;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 /**
  * REST resource that provides access to a User.
@@ -17,30 +15,27 @@ import java.util.Map;
 @Path("/user")
 public class UserResource {
 
-    private Map<String, User> usersById = new HashMap<>();
+    private UserDao dao = UserDao.INSTANCE;
 
     @GET
     @Produces("application/json")
-    public Response simpleResponse() {
-        return Response.status(200).entity(new User("1234", "John", "john@mail.com", 35)).build();
+    public Set<String> simpleResponse() {
+        return dao.getAllUserIds();
     }
 
     @POST
     @Consumes("application/json")
     @Produces("application/json")
     public Response saveUser(User user) {
-        String id = KeyGen.getKey();
-        user.setId(id);
-        usersById.put(id, user);
-
-        return Response.status(201).entity(new UserId(id)).build();
+        String id = dao.saveUser(user);
+        return Response.status(201).entity(id).build();
     }
 
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public Response getUser(@PathParam("id") String id) {
-        User user = usersById.get(id);
-        return Response.status(201).entity(user).build();
+    public User getUser(@PathParam("id") String id) {
+        return dao.findUserById(id);
     }
+
 }
