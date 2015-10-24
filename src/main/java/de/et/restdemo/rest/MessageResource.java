@@ -3,7 +3,10 @@ package de.et.restdemo.rest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Simple MessageResource
@@ -22,7 +25,22 @@ public class MessageResource {
     }
 
     @GET
+    @Produces("application/json")
     public Response simpleResponse() {
-        return Response.status(200).entity("Simple Text").build();
+        return Response.status(200).entity(new Person("John", 35)).build();
+    }
+
+    @XmlRootElement
+    class Person {
+
+        @XmlElement
+        String name;
+        @XmlElement
+        int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
     }
 }
