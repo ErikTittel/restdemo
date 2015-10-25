@@ -25,10 +25,16 @@ public class UserResource {
 
     @POST
     @Consumes("application/json")
-    @Produces("application/json")
     public Response saveUser(User user) {
         String id = dao.saveUser(user);
         return Response.status(201).entity(id).build();
+    }
+
+    @PUT
+    @Consumes("application/json")
+    public Response updateUser(User user) {
+        dao.updateUser(user);
+        return Response.noContent().build();
     }
 
     @GET

@@ -35,4 +35,8 @@ public enum UserDao {
     public void deleteUserById(String id) {
         usersById.remove(id);
     }
+
+    public void updateUser(User user) {
+        usersById.put(user.id, user);
+    }
 }
