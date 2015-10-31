@@ -3,6 +3,7 @@ package de.et.restdemo.rest;
 import de.et.restdemo.data.UserDao;
 import de.et.restdemo.model.User;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Set;
@@ -15,11 +16,12 @@ import java.util.Set;
 @Path("/user")
 public class UserResource {
 
-    private UserDao dao = UserDao.INSTANCE;
+    @Inject
+    private UserDao dao;
 
     @GET
     @Produces("application/json")
-    public Set<String> simpleResponse() {
+    public Set<String> allUserIds() {
         return dao.getAllUserIds();
     }
 
@@ -40,8 +42,12 @@ public class UserResource {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public User getUser(@PathParam("id") String id) {
-        return dao.findUserById(id);
+    public Response getUser(@PathParam("id") String id) {
+        User user = dao.findUserById(id);
+        if (user == null) {
+            return Response.status(404).build();
+        }
+        return Response.ok(user).build();
     }
 
     @DELETE

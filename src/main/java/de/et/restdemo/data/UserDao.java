@@ -2,41 +2,23 @@ package de.et.restdemo.data;
 
 import de.et.restdemo.model.User;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 /**
- * Provides (quasi) persistent storage and access for Users.
+ * Dao for the user.
  *
- * Created by Erik on 24.10.2015.
+ * Created by Erik on 25.10.2015.
  */
-public enum UserDao {
+public interface UserDao {
 
-    INSTANCE;
+    String saveUser(User user);
 
-    private Map<String, User> usersById = new HashMap<>();
-    private int biggestId = 0;
+    User findUserById(String id);
 
-    public String saveUser(User user) {
-        user.id = Integer.toString(biggestId++);
-        usersById.put(user.id, user);
-        return user.id;
-    }
+    Set<String> getAllUserIds() ;
 
-    public User findUserById(String id) {
-        return usersById.get(id);
-    }
+    void deleteUserById(String id);
 
-    public Set<String> getAllUserIds() {
-        return usersById.keySet();
-    }
+    void updateUser(User user);
 
-    public void deleteUserById(String id) {
-        usersById.remove(id);
-    }
-
-    public void updateUser(User user) {
-        usersById.put(user.id, user);
-    }
 }
