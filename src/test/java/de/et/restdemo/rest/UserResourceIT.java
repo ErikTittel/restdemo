@@ -6,7 +6,7 @@ import org.junit.Test;
  * *
  * Created by Erik on 25.10.2015.
  */
-public class UserResourceTest {
+public class UserResourceIT {
 
     @Test
     public void testGetUsers() throws Exception {

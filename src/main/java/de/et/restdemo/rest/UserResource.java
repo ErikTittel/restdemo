@@ -3,15 +3,23 @@ package de.et.restdemo.rest;
 import de.et.restdemo.data.UserDao;
 import de.et.restdemo.model.User;
 
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.Set;
 
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
 /**
- * REST resource that provides access to a User.
+ * Provides access to a User through REST interface.
  *
- * Created by Erik on 24.10.2015.
+ * <p>Created by Erik on 24.10.2015.
  */
 @Path("/user")
 public class UserResource {

@@ -2,10 +2,11 @@ package de.et.restdemo.data;
 
 import de.et.restdemo.model.User;
 
-import javax.enterprise.context.ApplicationScoped;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  * Provides (quasi) persistent storage and access for Users.
