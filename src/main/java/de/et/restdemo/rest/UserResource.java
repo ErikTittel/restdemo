@@ -2,6 +2,7 @@ package de.et.restdemo.rest;
 
 import de.et.restdemo.data.UserDao;
 import de.et.restdemo.model.User;
+import de.et.restdemo.model.UserResponse;
 
 import java.util.Set;
 
@@ -35,9 +36,11 @@ public class UserResource {
 
     @POST
     @Consumes("application/json")
+    @Produces("application/json")
     public Response saveUser(User user) {
-        String id = dao.saveUser(user);
-        return Response.status(201).entity(id).build();
+        UserResponse response = new UserResponse();
+        response.message = dao.saveUser(user);
+        return Response.status(201).entity(response).build();
     }
 
     @PUT
