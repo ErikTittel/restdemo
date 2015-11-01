@@ -1,16 +1,7 @@
 package de.et.restdemo.rest;
 
-import org.junit.Test;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
 
-/**
- * *
- * Created by Erik on 25.10.2015.
- */
-public class UserResourceIT {
-
-    @Test
-    public void testGetUsers() throws Exception {
-        // test resource ... somehow
-    }
-
-}
+@RunWith(Cucumber.class)
+public class UserResourceIT {}
